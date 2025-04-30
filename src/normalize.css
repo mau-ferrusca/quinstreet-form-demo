@@ -1,0 +1,108 @@
+/* Universal Reset Stylesheet */
+
+/* Remove default margins, padding, and border */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove text decoration for all links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Set font family and size */
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.4;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove table spacing */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove form input and button default styles */
+input,
+button,
+textarea,
+select {
+  border: none;
+  background: transparent;
+  font: inherit;
+  outline: none;
+}
+
+/* Set images to display correctly */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Normalize the appearance of buttons */
+button {
+  cursor: pointer;
+}
+
+/* Set link styling */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Normalize the appearance of textareas */
+textarea {
+  resize: none;
+}
+
+/* Set a consistent baseline for all elements */
+html {
+  font-size: 100%;
+  line-height: 1.5;
+}
+
+/* Ensure all elements follow the same styling rule for borders */
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+}
+
+/* Normalize the appearance of form elements */
+input[type='checkbox'],
+input[type='radio'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type='checkbox']::before,
+input[type='radio']::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #333;
+  border-radius: 50%;
+}
+
+input[type='checkbox']:checked::before,
+input[type='radio']:checked::before {
+  background-color: #007bff;
+  border-color: #007bff;
+}
