@@ -8,13 +8,80 @@
   <link rel="stylesheet" href="output.css">
 </head>
 
-<body>
-  <header class="bg-[#747375]">
-    header
+<body class="font-montserrat bg-blue-200">
+  <header class="flex justify-center items-center bg-[#545253] py-[20px]">
+    <img src="../public/assets/Logo.png"
+      srcset="../public//assets/Logo.png 1x, ../public//assets/Logo@2x.png 2x, ../public//assets/Logo@3x.png 3x"
+      alt="Modernize Logo">
   </header>
-  <div class="container bg-red-500 mx-auto">
-    CONTAINER
-  </div>
+  <main class="p-[15px]">
+    <!-- form box -->
+    <section class="min-w-[290px] max-w-[670px] mb-[35px] mx-auto bg-white shadow-custom">
+      <header class="p-[15px]  bg-[#545253] flex justify-center items-center min-h-[80px]">
+        <h2 class="flex flex-col text-center text-white text-[18px] font-bold text-balance ">
+          <span>Enter to win a 3rd generation Nest</span>
+          <span>Learning Thermostat worth $249.</span>
+        </h2>
+      </header>
+      <div>
+        <form id="savingsForm" action="" class="p-[22px] md:px-[55px] md:py-[25px]" novalidate>
+          <div class="grid grid-cols-3 gap-y-[20px] gap-x-[25px]">
+            <div class="col-span-3 relative">
+              <input type="text" placeholder="Name" id="name" class="input outline-0" required>
+              <div class="tooltip" id="nameTooltip">
+                This field requires at least 2 characters.
+              </div>
+            </div>
+            <div class="col-span-2">
+              <input type="text" placeholder="City" id="city" class="input outline-0">
+            </div>
+            <div class="col-span-1">
+              <input type="text" placeholder="State" id="state" class="input outline-0">
+            </div>
+            <div class="col-span-3 relative">
+              <input type="tel" name="phone" placeholder="Phone Number" id="phone" class="input outline-0" required>
+              <div class="tooltip" id="numTooltip">This field only accepts numbers.</div>
+            </div>
+            <div class="col-span-3 relative">
+              <input type="email" placeholder="Email Address" id="email" class="input outline-0" required>
+              <div class="tooltip" id="emailTooltip">
+                Please enter a valid email address.
+              </div>
+            </div>
+            <div class="col-span-3 justify-center grid">
+              <button type="submit"
+                class="bg-[#f6931d] text-white uppercase text-center py-[10px] rounded-full min-w-[242px] max-w-[350px] cursor-pointer">Enter
+                to
+                win</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- form box end -->
+    <!-- savings banner -->
+    <div class="flex justify-center items-center">
+      <section
+        class="relative border-[2px] border-[#a0bc57] border-t-0 min-w-[290px] max-w-[400px] text-[14px] text-[#545253]"
+        id="gapped-top-border">
+        <div class="p-[15px] bg-white m-[15px] ">
+          <span class="text-[#a0bc57] uppercase font-semibold">Advertorial</span>
+          <h2 class="text-[20px] pb-[12px] ">Tricks Homeowners Use to Eliminate Bills</h2>
+          <p>
+            Surging energy bills, unpredictable weather patterns and dissatisfaction with utility companies have
+            homeowners
+            scrambling…
+            <a href="https://google.com" target="_blank" class="text-[#6EB7C2] font-semibold">READ MORE</a>
+          </p>
+        </div>
+        <span
+          class="absolute -top-[.75em] left-[50%] translate-x-[-50%] text-center block uppercase font-semibold text-[15px]">Even
+          more
+          savings</span>
+      </section>
+    </div>
+  </main>
+  <script src="../public/index.js"></script>
 </body>
 
 </html>
