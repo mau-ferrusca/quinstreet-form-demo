@@ -1,14 +1,15 @@
-// Disable native HTML5 bubbles
+// Disable native HTML5 bubbles on input elements
 document.querySelectorAll('input').forEach(input => {
   input.addEventListener('invalid', e => e.preventDefault());
 });
 
+// controlling visibility of tooltips and timing
 function showTooltip(el) {
   el.classList.add('visible');
   setTimeout(() => el.classList.remove('visible'), 2000);
 }
 
-// —— Name Validation ——
+// —— Name Input Validation: more than 2 chars ——
 const nameInput = document.querySelector('#name');
 const nameTooltip = document.querySelector('#nameTooltip');
 
@@ -18,7 +19,7 @@ nameInput.addEventListener('blur', () => {
   if (!valid) showTooltip(nameTooltip);
 });
 
-// —— Email Validation ——
+// —— Email Input Validation: universal email pattern ——
 const emailInput = document.querySelector('#email');
 const emailTooltip = document.querySelector('#emailTooltip');
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,19 +30,19 @@ emailInput.addEventListener('blur', () => {
   if (!valid) showTooltip(emailTooltip);
 });
 
-// —— Phone Mask + Validation ——
+// —— USA Phone Mask + Numeric Validation ——
 const phoneInput = document.querySelector('#phone');
 const numTooltip = document.querySelector('#numTooltip');
 
 // Masking on every keystroke
 phoneInput.addEventListener('input', e => {
-  // If a non-digit was just inserted, show tooltip and mark error
+  // If non-digit char is inserted, show tooltip & error
   if (e.inputType === 'insertText' && /\D/.test(e.data)) {
     phoneInput.classList.add('error');
     showTooltip(numTooltip);
   }
 
-  // Re-format the digits into your mask
+  // Re-format the digits into mask
   let digits = e.target.value.replace(/\D/g, '');
   if (digits.length > 10) digits = digits.slice(0, 10);
 
@@ -52,7 +53,7 @@ phoneInput.addEventListener('input', e => {
   e.target.value = formatted;
 });
 
-// On blur, enforce exactly 10 digits
+// On blur, check for 10 digits
 phoneInput.addEventListener('blur', () => {
   const raw = phoneInput.value.replace(/\D/g, '');
   const valid = raw.length === 10;
@@ -60,15 +61,56 @@ phoneInput.addEventListener('blur', () => {
   if (!valid) showTooltip(numTooltip);
 });
 
-// —— Form Submission Hook ——
-document.getElementById('savingsForm').addEventListener('submit', e => {
+// form elements selectors
+const form = document.querySelector('#savingsForm');
+const submitBtn = document.querySelector('#submitButton');
+// (your existing validation setup here…)
+
+form.addEventListener('submit', async function (e) {
   e.preventDefault();
-  // Trigger both blur validations
+
+  // Trigger blur re-validation
   nameInput.dispatchEvent(new Event('blur'));
+  emailInput.dispatchEvent(new Event('blur'));
   phoneInput.dispatchEvent(new Event('blur'));
-  // If both valid, proceed...
-  if (!nameInput.classList.contains('error') &&
-    !phoneInput.classList.contains('error')) {
-    alert('Form submitted successfully!');
+
+  // Abort if any errors
+  if (
+    nameInput.classList.contains('error') ||
+    emailInput.classList.contains('error') ||
+    phoneInput.classList.contains('error')
+  ) {
+    return;
+  }
+
+  // Build payload
+  const payload = {
+    name: nameInput.value.trim(),
+    email: emailInput.value.trim(),
+    phone: phoneInput.value.trim()
+  };
+
+  try {
+    const response = await fetch('https://example.com/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      alert('Server error: ' + (errorData?.message || response.status));
+      return;
+    }
+
+    // **SUCCESS**: change button and disable further submissions
+    submitBtn.textContent = 'Submitted';
+    submitBtn.disabled = true;
+    // Optionally disable the rest of the form:
+    Array.from(form.elements).forEach(el => el.disabled = true);
+
+  } catch (err) {
+    console.error(err);
+    alert('Network error. Please try again later.');
   }
 });
