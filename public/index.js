@@ -64,7 +64,6 @@ phoneInput.addEventListener('blur', () => {
 // form elements selectors
 const form = document.querySelector('#savingsForm');
 const submitBtn = document.querySelector('#submitButton');
-// (your existing validation setup here…)
 
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
