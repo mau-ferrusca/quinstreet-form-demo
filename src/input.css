@@ -12,7 +12,7 @@
   }
 }
 
-/* bgd animation */
+/* page body bgd animation */
 body {
   animation: bgColorCycle 10s infinite alternate ease-in-out;
 }
@@ -27,6 +27,7 @@ body {
   }
 }
 
+/* gapped border using pseudo elems */
 #gapped-top-border::before,
 #gapped-top-border::after {
   content: '';
@@ -46,7 +47,7 @@ body {
   right: 0;
 }
 
-/* ANY .input.error gets the red border */
+/* ANY .input.error gets the red border, class is controlled via JS */
 .input.error {
   border-color: #D50303;
 }
