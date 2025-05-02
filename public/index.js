@@ -89,10 +89,12 @@ form.addEventListener('submit', async function (e) {
     phone: phoneInput.value.trim()
   };
 
-  // use https://formsws-hilstaging-com-0adj9wt8gzyq.runscope.net/solar as server
+  const quinstreetURL = 'https://formsws-hilstaging-com-0adj9wt8gzyq.runscope.net/solar';
+  const tempURL = 'https://jsonplaceholder.typicode.com/posts'; // For testing purposes
+
 
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+    const response = await fetch(quinstreetURL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
