@@ -375,22 +375,6 @@
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
-  .invalid\:border-pink-500 {
-    &:invalid {
-      border-color: var(--color-pink-500);
-    }
-  }
-  .focus\:border-0 {
-    &:focus {
-      border-style: var(--tw-border-style);
-      border-width: 0px;
-    }
-  }
-  .focus-visible\:border-pink-500 {
-    &:focus-visible {
-      border-color: var(--color-pink-500);
-    }
-  }
   .md\:px-\[55px\] {
     @media (width >= 48rem) {
       padding-inline: 55px;
