@@ -89,8 +89,10 @@ form.addEventListener('submit', async function (e) {
     phone: phoneInput.value.trim()
   };
 
+  // use https://formsws-hilstaging-com-0adj9wt8gzyq.runscope.net/solar as server
+
   try {
-    const response = await fetch('https://example.com/api/submit', {
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -105,6 +107,7 @@ form.addEventListener('submit', async function (e) {
     // **SUCCESS**: change button and disable further submissions
     submitBtn.textContent = 'Submitted';
     submitBtn.disabled = true;
+    submitBtn.classList.add('submitted');
     // Optionally disable the rest of the form:
     Array.from(form.elements).forEach(el => el.disabled = true);
 
