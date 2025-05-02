@@ -77,3 +77,12 @@ body {
     opacity: 0;
   }
 }
+
+#submitButton {
+  &.submitted {
+    background: #b0b0b0;
+    border-color: #f6931d;
+    color: #373737;
+    cursor: not-allowed;
+  }
+}
